@@ -15,7 +15,7 @@
             background-color: #f7f3e9; /* 温かみのある背景色 */
         }
 
-        /* アニメーション用のクラス */
+        /* スクロールでの表示アニメーション */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -52,6 +52,26 @@
             font-weight: bold;
             color: #b45309; /* 少し濃いオレンジ色 */
         }
+
+        /* === タイピングエフェクトのスタイル（カーソル削除版） === */
+        .typing-effect {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 1.5s steps(30, end);
+        }
+
+        /* タイピングアニメーション */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* アニメーション完了後にスタイルをリセットするためのクラス */
+        .typing-done {
+            animation: none;
+        }
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -70,8 +90,8 @@
 
         <!-- 開催概要 -->
         <section class="scroll-reveal bg-white p-6 rounded-lg shadow-md mb-8">
-            <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4">開催概要</h3>
-            <ul class="space-y-3 text-lg">
+            <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4"><span class="typing-target">開催概要</span></h3>
+            <ul class="space-y-3 text-lg mt-4 pl-2">
                 <li class="flex items-start"><span class="font-bold w-28 shrink-0">日　時：</span><span>2025年7月8日</span></li>
                 <li class="flex items-start"><span class="font-bold w-28 shrink-0">場　所：</span><span>ガウマシム（チェンライ市内）</span></li>
                 <li class="flex items-start"><span class="font-bold w-28 shrink-0">司会進行：</span><span>天野 氏（運営委員）</span></li>
@@ -81,16 +101,18 @@
 
         <!-- 最重要決定事項 -->
         <section class="scroll-reveal bg-white p-6 rounded-lg shadow-md mb-8">
-            <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4">はじめに：最重要決定事項</h3>
-            <div class="discussion-point">
-                <h5>議題：次期運営委員の募集</h5>
-                <p>現運営の方針（会の名称を「日本人会」に戻す、役員体制は3人体制に戻さない、等）が共有された上で、この方針に不満を持ち、会を根本から変えたい、会の未来のために尽力したいという熱意のある方の立候補が募られました。</p>
-            </div>
-            <div class="result-box">
-                <h4 class="text-xl mb-2">議論の結果：現運営体制の継続</h4>
-                <p class="text-lg">
-                    立候補者はいませんでした。小杉氏が会長に推薦されましたが辞退されました。これにより、<strong class="text-amber-800">現運営体制が2026年3月末までの暫定期間で継続されることが決定しました。</strong>
-                </p>
+            <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4"><span class="typing-target">はじめに：最重要決定事項</span></h3>
+            <div class="mt-4">
+                <div class="discussion-point">
+                    <h5>議題：次期運営委員の募集</h5>
+                    <p>現運営の方針が共有された上で、この方針に不満を持ち、会を根本から変えたい、会の未来のために尽力したいという熱意のある方の立候補が募られました。</p>
+                </div>
+                <div class="result-box">
+                    <h4 class="text-xl mb-2">議論の結果：現運営体制の継続</h4>
+                    <p class="text-lg">
+                        立候補者はいませんでした。これにより、<strong class="text-amber-800">現運営体制が2026年3月末までの暫定期間で継続されることが決定しました。</strong>
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -98,30 +120,13 @@
         <div class="space-y-8">
             <!-- 議題1 -->
             <section class="scroll-reveal bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4">議題1：会則に関する提案と議論</h3>
-                <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4"><span class="typing-target">議題1：会則に関する提案と議論</span></h3>
+                <div class="space-y-6 mt-4">
                     <div>
                         <h4 class="text-xl font-semibold text-gray-700 mb-2">論点1：会則第2条への目的追加</h4>
-                        <div class="discussion-point">
-                            <h5>提案内容</h5>
-                            <p>「会の現状の意義について、各自の解釈で理解されていないと感じるため、目的を明記すべき」として、以下の2案が提案されました。<br>
-                            案1：「本会は日本で離職、定年退職しタイ国チェンライ県及び近隣県で第2の人生を有意義に過ごす人たちの集いとする。」<br>
-                            案2：「本会は日本国内で離職、定年退職し第2の人生をタイ国チェンライ県及び近隣県に居住する人達相互の繋がりに寄与する。」</p>
-                        </div>
                         <div class="result-box">
                             <h4>議論の結果：</h4>
                             <p>議論を経て、目的条文を「本会は日本でタイ国チェンライ県及び近隣県でこれからの人生を有意義に過ごす人達相互の繋がりに寄与するの集いとする。」と定めることが決定しました。</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold text-gray-700 mb-2">論点2：会則第9条（委員会）の変更</h4>
-                         <div class="discussion-point">
-                            <h5>提案内容</h5>
-                            <p>運営委員会の招集方法や、ネット環境がない会員へ配慮し会報を郵送する努力義務を盛り込む会員提案がなされました。</p>
-                        </div>
-                        <div class="result-box">
-                            <h4>議論の結果：</h4>
-                            <p>運営委員の人数を定めず、会報の設置場所を「ガウマシム様、日本料理店サク様に5部ずつ」と具体的に定めるなど、実態に合わせた変更が決定しました。</p>
                         </div>
                     </div>
                 </div>
@@ -129,14 +134,10 @@
 
             <!-- 議題2 -->
             <section class="scroll-reveal bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4">議題2：会の運営と活動</h3>
-                <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4"><span class="typing-target">議題2：会の運営と活動</span></h3>
+                <div class="space-y-6 mt-4">
                      <div>
                         <h4 class="text-xl font-semibold text-gray-700 mb-2">論点1：日本人会および会報の発行継続</h4>
-                        <div class="discussion-point">
-                            <h5>主なご意見</h5>
-                            <p>「会はチェンライでの情報源として、会報は会員の結束を高めるために必要」「会報が停止したことは残念であり、会の存続と会報の復活を強く希望する」「会報の継続は2ヶ月に1回でも良い」といった、会の存続と会報の復活を望む声が多数寄せられました。</p>
-                        </div>
                         <div class="result-box">
                             <h4>議論の結果：</h4>
                             <p>会員からの強い要望を受け、<strong class="text-amber-800">月1回の会報発行を2026年3月まで継続</strong>することが決定しました。8月号から再開します。</p>
@@ -147,35 +148,35 @@
 
             <!-- 議題3 -->
             <section class="scroll-reveal bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4">議題3：役員体制と運営負担</h3>
-                 <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4"><span class="typing-target">議題3：運営委員（役員）体制と運営負担</span></h3>
+                 <div class="space-y-6 mt-4">
                     <div>
-                        <h4 class="text-xl font-semibold text-gray-700 mb-2">論点1：役員への報酬支払い</h4>
+                        <h4 class="text-xl font-semibold text-gray-700 mb-2">論点1：運営委員（役員）への報酬支払い</h4>
                         <div class="discussion-point">
                             <h5>提案内容</h5>
-                            <p>「役員の方には年間1000バーツの報酬を支払ってはどうか」という、役員の労をねぎらう提案がありました。</p>
+                            <p>「運営委員（役員）の方には年間1000バーツの報酬を支払ってはどうか」という、運営委員（役員）の労をねぎらう提案がありました。</p>
                         </div>
                         <div class="result-box">
                             <h4>議論の結果：</h4>
-                            <p>運営委員の労に報いるため、<strong class="text-amber-800">運営委員1人あたり年間3,000バーツの報酬を支払う</strong>ことが決定しました。ただし、会の財政状況により辞退する年がある可能性も確認されました。</p>
+                            <p>運営委員の労に報いるため、<strong class="text-amber-800">運営委員1人あたり年間3,000バーツの報酬を支払う</strong>ことが決定しました。</p>
                         </div>
                     </div>
                     <div>
-                        <h4 class="text-xl font-semibold text-gray-700 mb-2">論点2：役員の負担軽減と協力体制の構築</h4>
+                        <h4 class="text-xl font-semibold text-gray-700 mb-2">論点2：運営委員（役員）の負担軽減と協力体制の構築</h4>
                         <div class="discussion-point">
                             <h5>提案内容</h5>
                             <p>「新年会や餅つきなどで、まず係の立候補を募り、集まらなければ7〜8人に打診してはどうか」という、具体的な協力体制の提案がありました。</p>
                         </div>
                         <div class="result-box">
                             <h4>議論の結果：</h4>
-                            <p>イベント等の協力者は事前にアンケートで募集し、会員の皆様に広く協力を呼びかけていく方針が確認されました。年齢を考慮し、当日のキャンセルも可能とします。</p>
+                            <p>イベント等の協力者は事前にアンケートで募集し、会員の皆様に広く協力を呼びかけていく方針が確認されました。</p>
                         </div>
                     </div>
                     <div>
                         <h4 class="text-xl font-semibold text-gray-700 mb-2">論点3：感謝なき批判と会員間の「和」について</h4>
                         <div class="discussion-point">
                             <h5>主なご意見</h5>
-                            <p>一部の意見により会報が停止したことへの不満や、特定の意見を述べた方の退会を促すべきとの強い意見がある一方、役員への感謝の声も多数あり、「役員は感情的にならず、意見は意見として受け止め、皆で幸せを追求すべき」との提案もなされました。</p>
+                            <p>一部の意見により会報が停止したことへの不満や、特定の意見を述べた方の退会を促すべきとの強い意見がある一方、運営委員（役員）への感謝の声も多数あり、「運営委員（役員）は感情的にならず、意見は意見として受け止め、皆で幸せを追求すべき」との提案もなされました。</p>
                         </div>
                         <div class="result-box">
                             <h4>議論の結果：</h4>
@@ -187,13 +188,13 @@
             
             <!-- 閉会後の決定事項 -->
             <section class="scroll-reveal bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4">閉会後の重要決定</h3>
-                <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-gray-800 border-b-2 border-amber-600 pb-2 mb-4"><span class="typing-target">閉会後の重要決定</span></h3>
+                <div class="space-y-4 mt-4">
                     <div>
                         <h4 class="text-xl font-semibold text-gray-700 mb-2">葬儀費用立て替えの件</h4>
                          <div class="discussion-point">
                             <h5>経緯</h5>
-                            <p>チェンライに旅行中の日本人がバスの中で胸の苦しみを訴え、搬送先の病院で亡くなられた際、役員が葬儀費用の一部である7,500バーツを立て替えていました。この費用の扱いについて、会員の皆様に諮られました。</p>
+                            <p>チェンライに旅行中の日本人がバスの中で胸の苦しみを訴え、搬送先の病院で亡くなられた際、運営委員（役員）が葬儀費用の一部である7,500バーツを立て替えていました。この費用の扱いについて、会員の皆様に諮られました。</p>
                         </div>
                         <div class="result-box">
                             <h4>議論の結果：</h4>
@@ -220,13 +221,33 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // 全体のフェードイン
                     entry.target.classList.add('visible');
+                    
+                    // タイピングエフェクトの開始
+                    const titleSpan = entry.target.querySelector('.typing-target');
+                    if (titleSpan && !titleSpan.classList.contains('typing-done')) {
+                        
+                        const originalText = titleSpan.textContent;
+                        titleSpan.textContent = '';
+                        
+                        setTimeout(() => {
+                            titleSpan.classList.add('typing-effect');
+                            titleSpan.textContent = originalText;
+
+                            setTimeout(() => {
+                                titleSpan.classList.remove('typing-effect');
+                                titleSpan.classList.add('typing-done');
+                            }, 1500); 
+                        }, 100);
+                    }
+                    
                     // 一度表示されたら監視を解除する
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1 // 10%要素が見えたら発火
+            threshold: 0.2 // 20%要素が見えたら発火
         });
 
         scrollRevealElements.forEach(el => {
