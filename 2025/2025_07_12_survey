@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臨時総会後のアンケート結果</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for creating charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Using Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+        }
+        /* Style for the toggle content for smooth transition */
+        #toggleContent {
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">臨時総会後のアンケート結果</h1>
+            <p class="text-gray-600 mt-2">皆様からの貴重なご意見をまとめました。</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left Column: Chart and Percentages -->
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-xl font-bold mb-4 text-center text-gray-700">回答の割合</h2>
+                <!-- Chart Canvas -->
+                <div class="w-full max-w-xs mx-auto mb-6">
+                    <canvas id="responseChart"></canvas>
+                </div>
+                <!-- Percentage Details -->
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center">
+                        <span class="w-4 h-4 rounded-full mr-3" style="background-color: #36A2EB;"></span>
+                        <div>
+                            <span class="font-semibold">特定の会員への対応を求める:</span>
+                            <span class="font-bold text-gray-900">89.5%</span> (34人)
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-4 h-4 rounded-full mr-3" style="background-color: #FFCE56;"></span>
+                        <div>
+                            <span class="font-semibold">会の活動を停止する:</span>
+                            <span class="font-bold text-gray-900">7.9%</span> (3人)
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-4 h-4 rounded-full mr-3" style="background-color: #FF6384;"></span>
+                        <div>
+                            <span class="font-semibold">現運営陣の責任を問う:</span>
+                            <span class="font-bold text-gray-900">2.6%</span> (1人)
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right Column: Summary of Opinions -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-xl font-bold mb-4 text-gray-700">主なご意見のまとめ</h2>
+                <div class="prose prose-sm max-w-none text-gray-600 h-96 overflow-y-auto pr-4">
+                    <ul class="space-y-4">
+                        <li>運営委員の皆様のご苦労も分からず、他のメンバーに不愉快な思いをさせるような人は、退会勧告ではなく除名でも良い。</li>
+                        <li>除名はしなくても、執行部の方針が会員の大半の賛同を得たということで良いのではないか。ただ、日本大使館領事部に告げ口する行為は問題である。</li>
+                        <li>度を越えた質問をする一部の方には、他のグループを作って活動していただきたい。</li>
+                        <li>複数の人が集まる上での基本的な姿勢は「和」にある。現状の運営に不満であれば、会を退会し、自分の考えに賛同する人たちと新しい会を立ち上げるべきだ。</li>
+                        <li>現行運営委員のやる気を削ぎ、辞任に追い込む行為は会の「和」を乱し、他の会員に迷惑をかけ、会の存続を脅かす許されざる行為であり、退会処分にすべきと考える。</li>
+                        <li>役員を信頼しているので、役員会で決まったことは全て一任する。</li>
+                        <li>退会勧告ではなく「退会」させるべきだ。何度も秩序を乱す行為を行っている。</li>
+                        <li>度を越した提案や意見でなければ、自由に意見を公表し、皆の意見を伺うことができる、自由闊達で愉快な会を目指してほしい。</li>
+                        <li>特定の会員の名前を公表すべきだ。</li>
+                        <li>いきなりの除名ではなく、イエローカードのように一度目は警告、二度目は除名処分としてはどうか。</li>
+                        <li>会の土台を揺るがす行為であり、自分で会を作ってほしい。領事館に垂れ込む行為は会を潰す行為であり、除名もやむを得ない。</li>
+                        <li>執行部の皆様が努力して運営しているのに、文句を言うのが生きがいとしている方には回答する必要はない。無視するべきだ。</li>
+                        <li>会の運営に関して些細なことでいちいち非難するのではなく、会に入った目的をもう一度考えるべきだ。</li>
+                        <li>運営委員の判断による除名処分が会の活動維持に必要だと思う。</li>
+                        <li>詳細と実名を挙げて今後のことを皆で考えるべき、運営委員会に所属してもらう、意見を無視する、自らの退会を促す、といった選択肢も考えられる。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toggle for Full Survey Text -->
+        <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
+            <button id="toggleButton" class="w-full flex justify-between items-center text-left font-bold text-lg text-gray-700 focus:outline-none transition-colors duration-300 hover:text-blue-600">
+                <span>全てのアンケート原文を表示する</span>
+                <svg id="toggleIcon" class="w-6 h-6 transform transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="toggleContent">
+                <div class="prose prose-sm max-w-none text-gray-600 border-t pt-4 mt-4">
+                    <p>運営委員の皆様のご苦労も分からず、日本人会の他のメンバーに不愉快な思いをさせるこのような人は、退会勧告でなく、除名でもいいと思います。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>除名はしなくても執行部の方針が会員の大半の賛同を得た、と言う事で、いいのでは？<br>今は帰国中で総会にも出てないので状況がよくわかりません。<br>ただ、日本大使館領事部に告げ口する行為は問題ですね。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>度を越えた質問する一部の方には、他のグループを作って、そこで活動して頂きたいと思います。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>複数の人の集まりに於いての基本的な姿勢は“和”にあると思います。<br>現状運営に不満であるなれば自分の考えで運営運営できる様に現在所属の会を退会し自分の考えに賛同する人達と新しく会を立ち上げ思う様に運営すべきと思います。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>どれにも当てはまりませんが、選択肢がないので、やむなく③を選択しました。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>現行運営委員のやる気を削ぎ運営委員の辞任に追い込む行為は会の“和”を乱し他の会員に迷惑をかけ会の存続を脅かす事は許さざるべき行為であり退会処分にすべきと考えます。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>ご苦労様です。余りにも次元が低い話しで呆れてしまいました。役員の皆様の御苦労をお察し致します。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>臨時総会前のアンケートでは現運営委員の活動に賛同､感謝の意向をいただいて居る方々に反する行為に沿う事が出来なくなる状況は無視するべきではないと考えます。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>運営委員の活動ご苦労様です。<br>一昨日の臨時総会でも一部会員が何に対しても無責任な批判的な発言を繰り返している姿を目にして残念でした。<br>また臨時総会終了後に、その会員が作った彼の「懇親会」グループLINEに無責任な発言を繰り返してます。<br>書記役を作れとか、運営方法に建前のみ意見を発したり、昨晩お送り頂いた議事録の内容が不足などと発言してます。<br>グループLINEで反応してるのは、一名だけで、他の方は、スルーして誰も反応してません。文句ばかり言ってる数名は、何もせず無責任極まりなく非常に不愉快です。<br>私もこのレベルの方は、相手にせず無視してます。<br>ボランティアで運営委員を受けて頂き文句ばかり言われて非常に不愉快かと思いますが、<br>会員の99%以上の方は、運営委員の活動に感謝しており文句など無いはずです。<br>この様な人物に掻き回されるのであれば、それなりの対応を取って頂いても皆さん納得されるはずです。<br>縁あってチェンライやチェンライ近郊に住んでる日本人同士、楽しく過ごせればと思っております。<br>私は、サポート的な事は、なかなか出来てませんが、会の存続を強く希望しております。<br>よろしくお願いします。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>役員を信頼して決めたので、役員会で決まった事は全てを役員に一任しますので今後ともよろしくお願いします。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>退会勧告ではなくて「退会」すべき❗️彼は何度も秩序を乱す行為を行なっています。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>度を越した提案・意見・進言で無ければ、自由に自分の意見を公表して皆さんの意見を伺う事が出来る、自由闊達にして愉快なる理想の会、の実現に向けて進むようにお願いします。難しいのなら、一時的に休会をして、再出発でも良いと思います。自由に意見交換ができる会の実現をお願いします。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>特定会員がやめればことは解決するのでしょうか</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>特定の会員とは言わず、名前を公表すべきですよ。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>公表は無理なのかも知れませんが、その会員の方からの具体的な批判誹謗内容が分からないのが若干気になります。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>いきなりの除名でなくイエローカードのように一度目は警告二度目は除名処分ではいかがですか？また議事録については親睦会なので要約のみで良いのではないかと思う。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>前回の会報の問題は、総会でも取り上げて、会報を継続すると言うことで決着がついてるので、今更返す必要はないと思います。<br>今回の議事録の問題ですが、議事録の内容に不満があれば具体的にどこを修正するのか、その部分を確認して必要であれば、修正不要なら修正しないと言うことでごく普通の意見だと思います。この程度の意見は多少あっても問題ないのではないでしょうか？3択の中に答えがないのですが回答が必須なので、便宜上2を選択しましたが4番目が私の意見です。、4.会員の意見として一旦受け入れ意見の内容が会のためにならない場合は、受け流す</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>役員方々の判断に一任いたします</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>● ● ● この三人は　除名デスネ　　●さんは　初めて見ましたが　早いうちに　目　👀　を摘みましょう<br>少し　過激ですかね　？<br>年寄りは　これから沢山増えますし　うるさい　爺さんは　迷惑センバン　です<br>老後は　楽しく　やりましょう^_^ ？</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>大変驚き、この上ない不快感が湧き起こりました。仏陀が（こういう人）とは距離を置きなさい、の典型だと思いました。多分ほとんどの会員さん方は気分を害されたのではないかと思います。会の土台を揺るがす行為です。この方ご自分で自分の会を作っていただきたい。<br>盗作？　基本的な認識が欠如してますね。盗作には利害が発生しますが、どこに利害ありや。<br>　領事館に垂れ込む行為、笑止せんばん、会潰しですね。もってのほか、除名しかないかなと思います。そう言うご意見が出たら賛成します。<br>不快で気分最高に悪いです。運営委員さんの心中をお察しします。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>執行部の皆様が努力して運営して頂いているのに文句を言うのが生きがいとしている方には回答する必要は有りません。無視してください。日本人会は必要です。文句を言うことに生きがいを持っている人には回答することは有りません。無視しましょう。執行部の皆様、真面目に回答してはいけません。無視しましょう。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>そもそも会に加入したのは、同じようにロングステイをしている日本人の方々と知り合う機会を得て親睦、交友することが目的だと思います。会の運営に関して気に入らない点があるとしても些末なことについていちいち非難する道理はありません。非難する方は、もう一度会に入った目的をよく考えるべきです。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>回答する必要は有りません。無視してください。執行部の皆様お疲れ様です。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>俗に言うクレーマーは、除名すべきだと思う</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>そんなの辞めさせた方がいい</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>「しばらくの間休止」という意味も含めての「停止」にチェックしました。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>運営委員の判断にて除名処分が会の活動維持に必要と思います。除名処分を検討後運営委員会に一任して頂き活動維持出来ると思います。一任されないと活動維持は無理でしょう。これはアンケ--ト(1)になった場合になります。</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>3択はあくまでも最終決断であり、未だ幾つかのやるべきことがあるのではないかと思いますので以下の4項目を挙げさせていただきました。<br>①チェンライ日本人会は全ての会員の会であり、今回の全ての詳細と実名を挙げて今後の事を皆んなで考える。<br>②そんなに会の運営に対してケチをつけるのであれば、運営委員会に所属してもらう。<br>③その方の意見は全く気にしないようにして無視をする。<br>④そんなに会に対して不満があるのであれば勧告ではなく自らの退会を促す</p>
+                    <hr class="!my-6 !border-gray-200">
+                    <p>特定の会員とは言わず、名前を公表すべきですよ。</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="text-center mt-8 text-gray-500 text-sm">
+            <p>ご協力いただき、誠にありがとうございました。</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js script to render the pie chart
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('responseChart').getContext('2d');
+            const responseChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['特定の会員への対応を求める', '会の活動を停止する', '現運営陣の責任を問う'],
+                    datasets: [{
+                        label: '回答の割合',
+                        data: [89.5, 7.9, 2.6],
+                        backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed !== null) { label += context.parsed.toFixed(1) + '%'; }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Script for the toggle functionality
+            const toggleButton = document.getElementById('toggleButton');
+            const toggleContent = document.getElementById('toggleContent');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            toggleButton.addEventListener('click', () => {
+                const isClosed = toggleContent.style.maxHeight === '0px' || toggleContent.style.maxHeight === '';
+                if (isClosed) {
+                    // Open the toggle
+                    toggleContent.style.maxHeight = toggleContent.scrollHeight + 'px';
+                    toggleContent.style.opacity = '1';
+                    toggleIcon.classList.add('rotate-180');
+                } else {
+                    // Close the toggle
+                    toggleContent.style.maxHeight = '0px';
+                    toggleContent.style.opacity = '0';
+                    toggleIcon.classList.remove('rotate-180');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
